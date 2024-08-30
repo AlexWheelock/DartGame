@@ -24,9 +24,9 @@ Partial Class DartGame
     Private Sub InitializeComponent()
         Me.PlayButton = New System.Windows.Forms.Button()
         Me.ReplayButton = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
         Me.InformationalLabel = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PlayButton
@@ -47,14 +47,14 @@ Partial Class DartGame
         Me.ReplayButton.Text = "Replay"
         Me.ReplayButton.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'DartBoardPictureBox
         '
-        Me.PictureBox1.BackgroundImage = Global.DartGame.My.Resources.Resources.Target2
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 41)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(917, 917)
-        Me.PictureBox1.TabIndex = 3
-        Me.PictureBox1.TabStop = False
+        Me.DartBoardPictureBox.BackgroundImage = Global.DartGame.My.Resources.Resources.Target2
+        Me.DartBoardPictureBox.Location = New System.Drawing.Point(12, 41)
+        Me.DartBoardPictureBox.Name = "DartBoardPictureBox"
+        Me.DartBoardPictureBox.Size = New System.Drawing.Size(917, 917)
+        Me.DartBoardPictureBox.TabIndex = 3
+        Me.DartBoardPictureBox.TabStop = False
         '
         'InformationalLabel
         '
@@ -72,12 +72,12 @@ Partial Class DartGame
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 970)
         Me.Controls.Add(Me.InformationalLabel)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.DartBoardPictureBox)
         Me.Controls.Add(Me.ReplayButton)
         Me.Controls.Add(Me.PlayButton)
         Me.Name = "DartGame"
         Me.Text = "Dart Game"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -85,6 +85,6 @@ Partial Class DartGame
 
     Friend WithEvents PlayButton As Button
     Friend WithEvents ReplayButton As Button
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents DartBoardPictureBox As PictureBox
     Friend WithEvents InformationalLabel As Label
 End Class

@@ -19,17 +19,44 @@ Public Class DartGame
 
     End Sub
 
-    Sub GenerateRandomLocation(xCoord As Single, yCoord As Single)
-
+    Function GenerateRandomLocation() As Single
+        Dim randomPoint As Single
         Randomize()
-        xCoord = (Rnd() * 917)
-        yCoord = (Rnd() * 917)
+        randomPoint = Rnd() * 917
+
+        Return randomPoint
+    End Function
+
+    Sub DrawPoint()
+        Dim g As Graphics = DartBoardPictureBox.CreateGraphics
+
+    End Sub
+
+    Sub ClearBoard()
+
+    End Sub
+
+    Sub AppendToFile(xCoord As Single, yCoord As Single)
+        FileOpen(1, "...\...\DartThrows.txt", OpenMode.Append)
+        Write(1, xCoord & "," & yCoord)
     End Sub
 
     Private Sub DartGame_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.Space Then
-            GenerateRandomLocation(0, 0)
+            Dim xCoord As Single = 0
+            Dim yCoord As Single = 0
+            Dim dartThrow As Integer
 
+            If dartThrow = 4 Then
+                dartThrow = 0
+                ClearBoard()
+            End If
+
+            xCoord = GenerateRandomLocation()
+            yCoord = GenerateRandomLocation()
+            DrawPoint()
+            AppendToFile(xCoord, yCoord)
+            dartThrow += 1
         End If
     End Sub
 
