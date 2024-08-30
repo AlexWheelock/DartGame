@@ -8,7 +8,7 @@ Option Strict On
 Option Explicit On
 
 'TODO
-'[ ] Generate Random location
+'[X] Generate Random location
 '[ ] Have a turn be 3 darts then clear
 '[ ] Save turns to a file
 '[ ] Play through those turns again using a replay mode
@@ -19,14 +19,18 @@ Public Class DartGame
 
     End Sub
 
-    Sub GenerateRandomLocation()
-        Randomize()
+    Sub GenerateRandomLocation(xCoord As Single, yCoord As Single)
 
-        Rnd()
+        Randomize()
+        xCoord = (Rnd() * 917)
+        yCoord = (Rnd() * 917)
     End Sub
 
     Private Sub DartGame_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.Space Then
+            GenerateRandomLocation(0, 0)
 
+        End If
     End Sub
 
     Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles PlayButton.Click

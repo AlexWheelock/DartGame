@@ -61,10 +61,10 @@ Partial Class DartGame
         Me.InformationalLabel.AutoSize = True
         Me.InformationalLabel.Location = New System.Drawing.Point(183, 17)
         Me.InformationalLabel.Name = "InformationalLabel"
-        Me.InformationalLabel.Size = New System.Drawing.Size(488, 13)
+        Me.InformationalLabel.Size = New System.Drawing.Size(666, 13)
         Me.InformationalLabel.TabIndex = 4
-        Me.InformationalLabel.Text = "Press the space bar to throw a dart. Throw 3 darts per turn. Press Replay to go t" &
-    "hrough previous turns."
+        Me.InformationalLabel.Text = "Press the space bar to throw a dart. Throw 3 darts per turn. Press Replay"" to go " &
+    "through previous turns. To go back to playing, press ""Play""."
         '
         'DartGame
         '
