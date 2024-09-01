@@ -68,26 +68,38 @@ Public Class DartGame
     'Writes the dart throw to a file in order to retrieve and replay previous turns.
     Sub AppendToFile(xCoord As Single, yCoord As Single)
         FileOpen(1, "DartThrows.txt", OpenMode.Append)
-        Write(1, xCoord & "," & yCoord & vbCrLf)
+        Write(1, "^" & xCoord & "@" & yCoord & "^" & vbCrLf)
         FileClose(1)
     End Sub
 
-    Function ReadFromFile() As String
+    Function ReadFromFile(restart As Boolean) As String
         Dim rawCoordinates As String
-        Dim temp As String
+        Dim temp() As String
         Dim location As String
+        Static tally As Integer
 
-        FileOpen(1, "DartThrows.txt", OpenMode.Input)
+        If restart Then
+            tally = 0
+        Else
+            FileOpen(1, "DartThrows.txt", OpenMode.Input)
 
-        Do Until EOF(1)
-            temp = LineInput(1)
+            Do Until EOF(1)
+                rawCoordinates = LineInput(1)
+                temp = Split(rawCoordinates, "^")
+                Try
+                    location = temp(1)
+                    Me.previousThrows.Add(location)
+                Catch ex As Exception
 
-            'Me.previousThrows.Add()
-        Loop
+                End Try
+            Loop
 
-        FileClose(1)
+            FileClose(1)
 
-        Return rawCoordinates
+            location = previousThrows.Item(tally)
+        End If
+
+        Return location
     End Function
 
     Sub ThrowDart(play As Boolean)
@@ -95,7 +107,8 @@ Public Class DartGame
         Dim yCoord As Single = 0
         Static playThrow As Integer
         Static replayThrow As Integer
-        Dim rawCoordinates As String
+        Dim location As String
+        Dim temp() As String
 
         If play Then
             If playThrow = 3 Then
@@ -115,7 +128,10 @@ Public Class DartGame
                 ClearBoard()
             End If
             playThrow = 0
-            rawCoordinates = ReadFromFile()
+            location = ReadFromFile(False)
+            temp = Split(location, "@")
+            xCoord = CSng(temp(0))
+            yCoord = CSng(temp(1))
             DrawPoint(xCoord, yCoord)
             replayThrow += 1
             TurnLabel.Text = ("Turn: " & replayThrow & "/3")
@@ -145,5 +161,6 @@ Public Class DartGame
     Private Sub ReplayButton_LostFocus(sender As Object, e As EventArgs) Handles ReplayButton.LostFocus
         ClearBoard()
         TurnLabel.Text = ("Turn: 0/3")
+        ReadFromFile(True)
     End Sub
 End Class
