@@ -27,40 +27,64 @@ Public Class DartGame
         Return randomPoint
     End Function
 
-    Sub DrawPoint()
+    Sub DrawPoint(xCoord As Single, yCoord As Single)
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
+        Dim pen As New Pen(Color.LimeGreen)
+        pen.Width = 3
+        Dim pen2 As New Pen(Color.Black)
 
+        Try
+            g.DrawEllipse(pen, xCoord, yCoord, 10, 10)
+        Catch ex As Exception
+
+        End Try
+
+        Try
+            g.DrawEllipse(pen2, xCoord, yCoord, 10, 10)
+        Catch ex As Exception
+
+        End Try
+
+        pen.Dispose()
+        pen2.Dispose()
+        g.Dispose()
     End Sub
 
     Sub ClearBoard()
-
+        DartBoardPictureBox.Refresh()
     End Sub
 
     Sub AppendToFile(xCoord As Single, yCoord As Single)
-        FileOpen(1, "...\...\DartThrows.txt", OpenMode.Append)
+        FileOpen(1, "DartThrows.txt", OpenMode.Append)
         Write(1, xCoord & "," & yCoord)
+        FileClose(1)
     End Sub
+
+
 
     Private Sub DartGame_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.Space Then
-            Dim xCoord As Single = 0
-            Dim yCoord As Single = 0
-            Dim dartThrow As Integer
+        'If e.KeyCode = Keys.Space Then
+        '    Dim xCoord As Single = 0
+        '    Dim yCoord As Single = 0
+        '    Dim dartThrow As Integer
 
-            If dartThrow = 4 Then
-                dartThrow = 0
-                ClearBoard()
-            End If
+        '    If dartThrow = 4 Then
+        '        dartThrow = 0
+        '        ClearBoard()
+        '    End If
 
-            xCoord = GenerateRandomLocation()
-            yCoord = GenerateRandomLocation()
-            DrawPoint()
-            AppendToFile(xCoord, yCoord)
-            dartThrow += 1
-        End If
+        '    xCoord = GenerateRandomLocation()
+        '    yCoord = GenerateRandomLocation()
+        '    DrawPoint(xCoord, yCoord)
+        '    AppendToFile(xCoord, yCoord)
+        '    dartThrow += 1
+        'End If
     End Sub
 
+
+
     Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
+
 
     End Sub
 
@@ -68,4 +92,41 @@ Public Class DartGame
 
     End Sub
 
+    Private Sub PlayButton_KeyDown(sender As Object, e As KeyEventArgs) Handles PlayButton.KeyDown
+        If e.KeyCode = Keys.Space Then
+            Dim xCoord As Single = 0
+            Dim yCoord As Single = 0
+            Static dartThrow As Integer
+
+            If dartThrow = 3 Then
+                dartThrow = 0
+                ClearBoard()
+            End If
+
+            xCoord = GenerateRandomLocation()
+            yCoord = GenerateRandomLocation()
+            DrawPoint(xCoord, yCoord)
+            AppendToFile(xCoord, yCoord)
+            dartThrow += 1
+        End If
+    End Sub
+
+    Private Sub ReplayButton_KeyDown(sender As Object, e As KeyEventArgs) Handles ReplayButton.KeyDown
+        If e.KeyCode = Keys.Space Then
+            Dim xCoord As Single = 0
+            Dim yCoord As Single = 0
+            Static dartThrow As Integer
+
+            If dartThrow = 3 Then
+                dartThrow = 0
+                ClearBoard()
+            End If
+
+            xCoord = GenerateRandomLocation()
+            yCoord = GenerateRandomLocation()
+            DrawPoint(xCoord, yCoord)
+            AppendToFile(xCoord, yCoord)
+            dartThrow += 1
+        End If
+    End Sub
 End Class
