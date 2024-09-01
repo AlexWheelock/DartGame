@@ -153,12 +153,23 @@ Public Class DartGame
         End If
     End Sub
 
-    Private Sub PlayButton_LostFocus(sender As Object, e As EventArgs) Handles PlayButton.LostFocus
+    'Private Sub PlayButton_LostFocus(sender As Object, e As EventArgs) Handles PlayButton.LostFocus
+    '    ClearBoard()
+    '    TurnLabel.Text = ("Turn: 0/3")
+    'End Sub
+
+    'Private Sub ReplayButton_LostFocus(sender As Object, e As EventArgs) Handles ReplayButton.LostFocus
+    '    ClearBoard()
+    '    TurnLabel.Text = ("Turn: 0/3")
+    '    ReadFromFile(True)
+    'End Sub
+
+    Private Sub PlayButton_GotFocus(sender As Object, e As EventArgs) Handles PlayButton.GotFocus
         ClearBoard()
         TurnLabel.Text = ("Turn: 0/3")
     End Sub
 
-    Private Sub ReplayButton_LostFocus(sender As Object, e As EventArgs) Handles ReplayButton.LostFocus
+    Private Sub ReplayButton_GotFocus(sender As Object, e As EventArgs) Handles ReplayButton.GotFocus
         ClearBoard()
         TurnLabel.Text = ("Turn: 0/3")
         ReadFromFile(True)
