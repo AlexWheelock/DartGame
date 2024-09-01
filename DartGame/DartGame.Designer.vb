@@ -26,7 +26,7 @@ Partial Class DartGame
         Me.ReplayButton = New System.Windows.Forms.Button()
         Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
         Me.InformationalLabel = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TurnLabel = New System.Windows.Forms.Label()
         CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -67,23 +67,23 @@ Partial Class DartGame
         Me.InformationalLabel.Text = "Press the space bar to throw a dart. Throw 3 darts per turn. Press Replay"" to go " &
     "through previous turns. To go back to playing, press ""Play""."
         '
-        'Label1
+        'TurnLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.SystemColors.Control
-        Me.Label1.Font = New System.Drawing.Font("Consolas", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(829, 936)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 22)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Turn: 0/3"
+        Me.TurnLabel.AutoSize = True
+        Me.TurnLabel.BackColor = System.Drawing.SystemColors.Control
+        Me.TurnLabel.Font = New System.Drawing.Font("Consolas", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TurnLabel.Location = New System.Drawing.Point(829, 936)
+        Me.TurnLabel.Name = "TurnLabel"
+        Me.TurnLabel.Size = New System.Drawing.Size(100, 22)
+        Me.TurnLabel.TabIndex = 5
+        Me.TurnLabel.Text = "Turn: 0/3"
         '
         'DartGame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 970)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.TurnLabel)
         Me.Controls.Add(Me.InformationalLabel)
         Me.Controls.Add(Me.DartBoardPictureBox)
         Me.Controls.Add(Me.ReplayButton)
@@ -101,5 +101,5 @@ Partial Class DartGame
     Friend WithEvents ReplayButton As Button
     Friend WithEvents DartBoardPictureBox As PictureBox
     Friend WithEvents InformationalLabel As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents TurnLabel As Label
 End Class

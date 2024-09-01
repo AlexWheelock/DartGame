@@ -9,36 +9,46 @@ Option Explicit On
 
 'TODO
 '[X] Generate Random location
-'[ ] Have a turn be 3 darts then clear
-'[ ] Save turns to a file
+'[X] Have a turn be 3 darts then clear
+'[X] Save turns to a file
 '[ ] Play through those turns again using a replay mode
 
 Public Class DartGame
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Dim previousThrows As New List(Of String)
 
+    'Upon running the program, the previous dart throws are erased by writing nothing as OpenMode.Output.
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FileOpen(1, "DartThrows.txt", OpenMode.Output)
+        Write(1)
+        FileClose(1)
     End Sub
 
+    'Generates the x and y coordinates for the dart throw.
     Function GenerateRandomLocation() As Single
         Dim randomPoint As Single
         Randomize()
+        'DartBoardPictureBox is 917x917 pixels, working for scaling both ways.
         randomPoint = Rnd() * 917
 
         Return randomPoint
     End Function
 
+    'Draws the circle indicating where the dart landed.
     Sub DrawPoint(xCoord As Single, yCoord As Single)
         Dim g As Graphics = DartBoardPictureBox.CreateGraphics
         Dim pen As New Pen(Color.LimeGreen)
         pen.Width = 3
         Dim pen2 As New Pen(Color.Black)
 
+        'Draws the green circle
         Try
             g.DrawEllipse(pen, xCoord, yCoord, 10, 10)
         Catch ex As Exception
 
         End Try
 
+        'Draws the black circle for improved contrast.
         Try
             g.DrawEllipse(pen2, xCoord, yCoord, 10, 10)
         Catch ex As Exception
@@ -50,83 +60,90 @@ Public Class DartGame
         g.Dispose()
     End Sub
 
+    'Clears the dart throws from previous turns on DartBoardPictureBox
     Sub ClearBoard()
         DartBoardPictureBox.Refresh()
     End Sub
 
+    'Writes the dart throw to a file in order to retrieve and replay previous turns.
     Sub AppendToFile(xCoord As Single, yCoord As Single)
         FileOpen(1, "DartThrows.txt", OpenMode.Append)
-        Write(1, xCoord & "," & yCoord)
+        Write(1, xCoord & "," & yCoord & vbCrLf)
         FileClose(1)
     End Sub
 
+    Function ReadFromFile() As String
+        Dim rawCoordinates As String
+        Dim temp As String
+        Dim location As String
 
+        FileOpen(1, "DartThrows.txt", OpenMode.Input)
 
-    Private Sub DartGame_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        'If e.KeyCode = Keys.Space Then
-        '    Dim xCoord As Single = 0
-        '    Dim yCoord As Single = 0
-        '    Dim dartThrow As Integer
+        Do Until EOF(1)
+            temp = LineInput(1)
 
-        '    If dartThrow = 4 Then
-        '        dartThrow = 0
-        '        ClearBoard()
-        '    End If
+            'Me.previousThrows.Add()
+        Loop
 
-        '    xCoord = GenerateRandomLocation()
-        '    yCoord = GenerateRandomLocation()
-        '    DrawPoint(xCoord, yCoord)
-        '    AppendToFile(xCoord, yCoord)
-        '    dartThrow += 1
-        'End If
-    End Sub
+        FileClose(1)
 
+        Return rawCoordinates
+    End Function
 
+    Sub ThrowDart(play As Boolean)
+        Dim xCoord As Single = 0
+        Dim yCoord As Single = 0
+        Static playThrow As Integer
+        Static replayThrow As Integer
+        Dim rawCoordinates As String
 
-    Private Sub PlayButton_Click(sender As Object, e As EventArgs) Handles PlayButton.Click
-
-
-    End Sub
-
-    Private Sub ReplayButton_Click(sender As Object, e As EventArgs) Handles ReplayButton.Click
-
-    End Sub
-
-    Private Sub PlayButton_KeyDown(sender As Object, e As KeyEventArgs) Handles PlayButton.KeyDown
-        If e.KeyCode = Keys.Space Then
-            Dim xCoord As Single = 0
-            Dim yCoord As Single = 0
-            Static dartThrow As Integer
-
-            If dartThrow = 3 Then
-                dartThrow = 0
+        If play Then
+            If playThrow = 3 Then
+                playThrow = 0
                 ClearBoard()
             End If
-
+            replayThrow = 0
             xCoord = GenerateRandomLocation()
             yCoord = GenerateRandomLocation()
             DrawPoint(xCoord, yCoord)
             AppendToFile(xCoord, yCoord)
-            dartThrow += 1
+            playThrow += 1
+            TurnLabel.Text = ("Turn: " & playThrow & "/3")
+        Else
+            If replayThrow = 3 Then
+                replayThrow = 0
+                ClearBoard()
+            End If
+            playThrow = 0
+            rawCoordinates = ReadFromFile()
+            DrawPoint(xCoord, yCoord)
+            replayThrow += 1
+            TurnLabel.Text = ("Turn: " & replayThrow & "/3")
+        End If
+    End Sub
+
+    'EVENT HANDLERS BELOW THIS POINT!!!
+
+    'Put the player into the "Play" Mode where they can have new turns, returning from the "Replay" Mode.
+    Private Sub PlayButton_KeyDown(sender As Object, e As KeyEventArgs) Handles PlayButton.KeyDown
+        If e.KeyCode = Keys.Space Then
+            ThrowDart(True)
         End If
     End Sub
 
     Private Sub ReplayButton_KeyDown(sender As Object, e As KeyEventArgs) Handles ReplayButton.KeyDown
         If e.KeyCode = Keys.Space Then
-            Dim xCoord As Single = 0
-            Dim yCoord As Single = 0
-            Static dartThrow As Integer
-
-            If dartThrow = 3 Then
-                dartThrow = 0
-                ClearBoard()
-            End If
-
-            xCoord = GenerateRandomLocation()
-            yCoord = GenerateRandomLocation()
-            DrawPoint(xCoord, yCoord)
-            AppendToFile(xCoord, yCoord)
-            dartThrow += 1
+            ThrowDart(False)
         End If
+    End Sub
+
+    Private Sub PlayButton_LostFocus(sender As Object, e As EventArgs) Handles PlayButton.LostFocus
+        ClearBoard()
+        TurnLabel.Text = ("Turn: 0/3")
+    End Sub
+
+    Private Sub ReplayButton_LostFocus(sender As Object, e As EventArgs) Handles ReplayButton.LostFocus
+        ClearBoard()
+        TurnLabel.Text = ("Turn: 0/3")
     End Sub
 End Class
