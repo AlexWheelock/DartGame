@@ -50,7 +50,7 @@ Partial Class DartGame
         '
         'DartBoardPictureBox
         '
-        Me.DartBoardPictureBox.BackgroundImage = Global.DartGame.My.Resources.Resources.Target2
+        Me.DartBoardPictureBox.BackgroundImage = Global.DartGame.My.Resources.Resources.Target21
         Me.DartBoardPictureBox.Location = New System.Drawing.Point(12, 41)
         Me.DartBoardPictureBox.Name = "DartBoardPictureBox"
         Me.DartBoardPictureBox.Size = New System.Drawing.Size(917, 917)
