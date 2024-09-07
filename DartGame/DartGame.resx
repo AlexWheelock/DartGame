@@ -117,4 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InformationalLabel.Text" xml:space="preserve">
+    <value>Press the space bar with "Play" highlighted to throw a dart. Throw 3 darts per turn. Press the space bar with "Replay" highlighted to go through previous turns.
+To go back to playing, highlight "Play" again.</value>
+  </data>
 </root>

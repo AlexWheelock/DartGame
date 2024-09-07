@@ -22,50 +22,44 @@ Partial Class DartGame
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DartGame))
         Me.PlayButton = New System.Windows.Forms.Button()
         Me.ReplayButton = New System.Windows.Forms.Button()
-        Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
         Me.InformationalLabel = New System.Windows.Forms.Label()
         Me.TurnLabel = New System.Windows.Forms.Label()
+        Me.DartBoardPictureBox = New System.Windows.Forms.PictureBox()
         CType(Me.DartBoardPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PlayButton
         '
+        Me.PlayButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.PlayButton.Location = New System.Drawing.Point(12, 12)
         Me.PlayButton.Name = "PlayButton"
         Me.PlayButton.Size = New System.Drawing.Size(75, 23)
         Me.PlayButton.TabIndex = 0
         Me.PlayButton.Text = "Play"
-        Me.PlayButton.UseVisualStyleBackColor = True
+        Me.PlayButton.UseVisualStyleBackColor = False
         '
         'ReplayButton
         '
+        Me.ReplayButton.BackColor = System.Drawing.Color.Red
+        Me.ReplayButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight
         Me.ReplayButton.Location = New System.Drawing.Point(93, 12)
         Me.ReplayButton.Name = "ReplayButton"
         Me.ReplayButton.Size = New System.Drawing.Size(75, 23)
         Me.ReplayButton.TabIndex = 2
         Me.ReplayButton.Text = "Replay"
-        Me.ReplayButton.UseVisualStyleBackColor = True
-        '
-        'DartBoardPictureBox
-        '
-        Me.DartBoardPictureBox.BackgroundImage = Global.DartGame.My.Resources.Resources.Target21
-        Me.DartBoardPictureBox.Location = New System.Drawing.Point(12, 41)
-        Me.DartBoardPictureBox.Name = "DartBoardPictureBox"
-        Me.DartBoardPictureBox.Size = New System.Drawing.Size(917, 917)
-        Me.DartBoardPictureBox.TabIndex = 3
-        Me.DartBoardPictureBox.TabStop = False
+        Me.ReplayButton.UseVisualStyleBackColor = False
         '
         'InformationalLabel
         '
         Me.InformationalLabel.AutoSize = True
-        Me.InformationalLabel.Location = New System.Drawing.Point(183, 17)
+        Me.InformationalLabel.Location = New System.Drawing.Point(179, 9)
         Me.InformationalLabel.Name = "InformationalLabel"
-        Me.InformationalLabel.Size = New System.Drawing.Size(666, 13)
+        Me.InformationalLabel.Size = New System.Drawing.Size(751, 26)
         Me.InformationalLabel.TabIndex = 4
-        Me.InformationalLabel.Text = "Press the space bar to throw a dart. Throw 3 darts per turn. Press Replay"" to go " &
-    "through previous turns. To go back to playing, press ""Play""."
+        Me.InformationalLabel.Text = resources.GetString("InformationalLabel.Text")
         '
         'TurnLabel
         '
@@ -77,6 +71,15 @@ Partial Class DartGame
         Me.TurnLabel.Size = New System.Drawing.Size(100, 22)
         Me.TurnLabel.TabIndex = 5
         Me.TurnLabel.Text = "Turn: 0/3"
+        '
+        'DartBoardPictureBox
+        '
+        Me.DartBoardPictureBox.BackgroundImage = Global.DartGame.My.Resources.Resources.Target21
+        Me.DartBoardPictureBox.Location = New System.Drawing.Point(12, 41)
+        Me.DartBoardPictureBox.Name = "DartBoardPictureBox"
+        Me.DartBoardPictureBox.Size = New System.Drawing.Size(917, 917)
+        Me.DartBoardPictureBox.TabIndex = 3
+        Me.DartBoardPictureBox.TabStop = False
         '
         'DartGame
         '
