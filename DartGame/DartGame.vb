@@ -31,7 +31,7 @@ Public Class DartGame
         Dim randomPoint As Single
         Randomize()
         'DartBoardPictureBox is 917x917 pixels, working for scaling both ways.
-        randomPoint = Rnd() * 917
+        randomPoint = Rnd() * DartBoardPictureBox.Height '917
         Return randomPoint
     End Function
 

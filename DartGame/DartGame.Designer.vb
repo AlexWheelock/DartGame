@@ -57,10 +57,10 @@ Partial Class DartGame
         'InformationalLabel
         '
         Me.InformationalLabel.AutoSize = True
-        Me.InformationalLabel.Location = New System.Drawing.Point(239, 11)
+        Me.InformationalLabel.Location = New System.Drawing.Point(13, 401)
         Me.InformationalLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.InformationalLabel.Name = "InformationalLabel"
-        Me.InformationalLabel.Size = New System.Drawing.Size(686, 32)
+        Me.InformationalLabel.Size = New System.Drawing.Size(348, 64)
         Me.InformationalLabel.TabIndex = 4
         Me.InformationalLabel.Text = resources.GetString("InformationalLabel.Text")
         '
@@ -69,7 +69,7 @@ Partial Class DartGame
         Me.TurnLabel.AutoSize = True
         Me.TurnLabel.BackColor = System.Drawing.SystemColors.Control
         Me.TurnLabel.Font = New System.Drawing.Font("Consolas", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TurnLabel.Location = New System.Drawing.Point(807, 947)
+        Me.TurnLabel.Location = New System.Drawing.Point(237, 15)
         Me.TurnLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.TurnLabel.Name = "TurnLabel"
         Me.TurnLabel.Size = New System.Drawing.Size(129, 28)
@@ -79,10 +79,12 @@ Partial Class DartGame
         'DartBoardPictureBox
         '
         Me.DartBoardPictureBox.BackgroundImage = Global.DartGame.My.Resources.Resources.Target21
-        Me.DartBoardPictureBox.Location = New System.Drawing.Point(16, 50)
+        Me.DartBoardPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.DartBoardPictureBox.Location = New System.Drawing.Point(16, 47)
         Me.DartBoardPictureBox.Margin = New System.Windows.Forms.Padding(4)
         Me.DartBoardPictureBox.Name = "DartBoardPictureBox"
-        Me.DartBoardPictureBox.Size = New System.Drawing.Size(917, 917)
+        Me.DartBoardPictureBox.Size = New System.Drawing.Size(350, 350)
+        Me.DartBoardPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.DartBoardPictureBox.TabIndex = 3
         Me.DartBoardPictureBox.TabStop = False
         '
@@ -90,7 +92,8 @@ Partial Class DartGame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(949, 984)
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(381, 478)
         Me.Controls.Add(Me.TurnLabel)
         Me.Controls.Add(Me.InformationalLabel)
         Me.Controls.Add(Me.DartBoardPictureBox)
@@ -108,7 +111,7 @@ Partial Class DartGame
 
     Friend WithEvents PlayButton As Button
     Friend WithEvents ReplayButton As Button
-    Friend WithEvents DartBoardPictureBox As PictureBox
     Friend WithEvents InformationalLabel As Label
     Friend WithEvents TurnLabel As Label
+    Friend WithEvents DartBoardPictureBox As PictureBox
 End Class
